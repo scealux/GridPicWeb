@@ -8,3 +8,13 @@ body {
   left: 0;
   object-fit: contain;
   }
+
+#mdl-card mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-cell--12-col-tablet mdl-cell--12-col-desktop{
+    width:50%;
+    float:left;
+}
+
+#video{
+    width:50%;
+    float:left;
+}
