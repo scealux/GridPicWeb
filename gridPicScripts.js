@@ -27,6 +27,9 @@ function doWhatYouWantWithTheCapturedImage(blob){
     overlay.parentNode.appendChild(img);
     vid.parentNode.removeChild(vid);
     overlay.parentNode.removeChild(overlay);
+    
+    handleFileSelect(blob);
+    
 }
 
 /**
@@ -150,6 +153,9 @@ function initApp() {
             document.getElementById('quickstart-sign-in-status').textContent = 'Signed in';
             document.getElementById('quickstart-sign-in').textContent = 'Sign out';
             document.getElementById('quickstart-account-details').textContent = JSON.stringify(user, null, '  ');
+            
+           // document.getElementById('file').addEventListener('change', handleFileSelect, false);
+            
             if (!emailVerified) {
                 document.getElementById('quickstart-verify-email').disabled = false;
             }
@@ -160,12 +166,14 @@ function initApp() {
             document.getElementById('quickstart-sign-in-status').textContent = 'Signed out';
             document.getElementById('quickstart-sign-in').textContent = 'Sign in';
             document.getElementById('quickstart-account-details').textContent = 'null';
+            
+            document.getElementById('file').disabled = false;
             // [END_EXCLUDE]
         }
         // [START_EXCLUDE silent]
         document.getElementById('quickstart-sign-in').disabled = false;
         // [END_EXCLUDE]
-    });
+    }) ;
     // [END authstatelistener]
     document.getElementById('quickstart-sign-in').addEventListener('click', toggleSignIn, false);
     document.getElementById('quickstart-sign-up').addEventListener('click', handleSignUp, false);
@@ -197,3 +205,21 @@ function openTab(evt, cityName) {
 window.onload = function() {
     initApp();
 };
+
+function handleFileSelect(blob){
+    var firebaseStorage = firebase.storage().ref();
+    console.log("test");
+    //evt.stopPropagation();
+    //evt.preventDefault();
+    var file = blob;
+    var metadata = {'contentType': file.type};
+    
+    firebaseStorage.child('images/' + file.name).put(file, metadata).then(function(snapshot){
+        console.log('Uploaded', snapshot.totalBytes, 'bytes.');
+        console.log(snapshot.metadata);
+        var url = snapshot.downloadURL;
+        console.log('File available at', url);
+    }).catch(function(error){
+        console.error('Upload failed:', error);  
+    });
+}
