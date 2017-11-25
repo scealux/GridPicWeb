@@ -4,7 +4,32 @@ body {
 
 #overlay{
     position: absolute;
-    top: 0;
-    left: 0;
+    margin-top: 10000;
     object-fit: contain;
+}
+
+div.tab {
+    overflow: hidden;
+    border: 1px solid #ccc;
+}
+
+div.tab button {
+    background-color: inherit;
+    float: left;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 14px 16px;
+    transition: 0.3s;
+}
+
+div.tab button:hover {
+    background-color: #ddd;
+}
+
+.tabcontent {
+    display: none;
+    padding: 6px 12px;
+    border: 1px solid #ccc;
+    border-top: none;
 }
