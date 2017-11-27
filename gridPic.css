@@ -3,18 +3,34 @@ body {
 }
 
 #overlay{
-  position: absolute;
-  top: 0;
-  left: 0;
-  object-fit: contain;
-  }
-
-#mdl-card mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-cell--12-col-tablet mdl-cell--12-col-desktop{
-    width:50%;
-    float:left;
+    position: absolute;
+    top: 0;
+    left: 0;
+    object-fit: contain;
 }
 
-#video{
-    width:50%;
-    float:left;
+div.tab {
+    overflow: hidden;
+    border: 1px solid #ccc;
+}
+
+div.tab button {
+    background-color: inherit;
+    float: left;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 14px 16px;
+    transition: 0.3s;
+}
+
+div.tab button:hover {
+    background-color: #ddd;
+}
+
+.tabcontent {
+    display: none;
+    padding: 6px 12px;
+    border: 1px solid #ccc;
+    border-top: none;
 }
