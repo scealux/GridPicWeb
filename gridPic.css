@@ -3,7 +3,6 @@ body {
 }
 
 #overlay{
-<<<<<<< HEAD
   position: absolute;
   top: 0;
   left: 0;
@@ -13,37 +12,4 @@ body {
 #video{
     width:50%;
     float:left;
-=======
-    position: absolute;
-    top: 0;
-    left: 0;
-    object-fit: contain;
 }
-
-div.tab {
-    overflow: hidden;
-    border: 1px solid #ccc;
-}
-
-div.tab button {
-    background-color: inherit;
-    float: left;
-    border: none;
-    outline: none;
-    cursor: pointer;
-    padding: 14px 16px;
-    transition: 0.3s;
-}
-
-div.tab button:hover {
-    background-color: #ddd;
-}
-
-.tabcontent {
-    display: none;
-    padding: 6px 12px;
-    border: 1px solid #ccc;
-    border-top: none;
->>>>>>> 2307648773dbb4de24ebc5ec87d290523b2fe9d8
-}
-\n
