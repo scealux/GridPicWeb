@@ -221,4 +221,4 @@ function handleFileSelect(blob){
 
 window.onload = function() {
     initApp();
-};
+}; 
