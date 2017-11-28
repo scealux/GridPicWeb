@@ -1,7 +1,6 @@
 //This is the javascript file
 //This is a change
 
-
 navigator.mediaDevices.getUserMedia({video:true}).then(function(stream){
     vid.onloadedmetadata = function(){
         this.width = overlay.width = this.videoWidth;
@@ -151,7 +150,7 @@ function initApp() {
             // [START_EXCLUDE]
             document.getElementById('quickstart-sign-in-status').textContent = 'Signed in';
             document.getElementById('quickstart-sign-in').textContent = 'Sign out';
-            document.getElementById('quickstart-account-details').textContent = JSON.stringify(user, null, '  ');
+            //document.getElementById('quickstart-account-details').textContent = JSON.stringify(user, null, '  ');
             
             // document.getElementById('file').addEventListener('change', handleFileSelect, false);
             
