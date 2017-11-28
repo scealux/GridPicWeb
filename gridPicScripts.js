@@ -26,7 +26,7 @@ function doWhatYouWantWithTheCapturedImage(blob){
     overlay.parentNode.appendChild(img);
     vid.parentNode.removeChild(vid);
     overlay.parentNode.removeChild(overlay);
-    
+
     handFileSelect(blob);
 }
 
@@ -151,9 +151,9 @@ function initApp() {
             document.getElementById('quickstart-sign-in-status').textContent = 'Signed in';
             document.getElementById('quickstart-sign-in').textContent = 'Sign out';
             //document.getElementById('quickstart-account-details').textContent = JSON.stringify(user, null, '  ');
-            
+
             // document.getElementById('file').addEventListener('change', handleFileSelect, false);
-            
+
             if (!emailVerified) {
                 document.getElementById('quickstart-verify-email').disabled = false;
             }
@@ -164,7 +164,7 @@ function initApp() {
             document.getElementById('quickstart-sign-in-status').textContent = 'Signed out';
             document.getElementById('quickstart-sign-in').textContent = 'Sign in';
             document.getElementById('quickstart-account-details').textContent = 'null';
-            
+
             //document.getElementById('file').disabled = false;
             // [END_EXCLUDE]
         }
@@ -203,21 +203,22 @@ function openTab(evt, cityName) {
 function handleFileSelect(blob){
     var firebaseStorage = firebase.storage().ref();
     console.log("test");
-    //evt.stopPropagation();
-    //evt.preventDefault();
-    var file = blob;
-    var metadata = {'contentType': file.type};
 
-    firebaseStorage.child('images/' + file.name).put(file, metadata).then(function(snapshot){
-        console.log('Uploaded', snapshot.totalBytes, 'bytes.');
-        console.log(snapshot.metadata);
-        var url = snapshot.downloadURL;
-        console.log('File available at', url);
-    }).catch(function(error){
-        console.error('Upload failed:', error);  
-    });
+    //var file = blob;
+    var metadata = {'contentType': file.type};
+    var user = firebase.auth().currentUser;
+    if (user != null){
+      firebaseStorage.child('images/' + user.uid + '/' + file.name).put(blob, metadata).then(function(snapshot){
+          console.log('Uploaded', snapshot.totalBytes, 'bytes.');
+          console.log(snapshot.metadata);
+          var url = snapshot.downloadURL;
+          console.log('File available at', url);
+      }).catch(function(error){
+          console.error('Upload failed:', error);
+      });
+    }
 }
 
 window.onload = function() {
     initApp();
-}; 
+};

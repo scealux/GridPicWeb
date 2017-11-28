@@ -38,22 +38,22 @@
         messagingSenderId: "489216708867"
     };
     firebase.initializeApp(config);
-    
+
     var database = firebase.database();
     var storage = firebase.storage();
-</script> 
+</script>
 <script src="/__/firebase/init.js"></script>
 
 <header>
     <h2>GridPic</h2>
 </header>
-    
+
 <body>
     <div class="tab">
         <button class="tablinks" onclick="openTab(event, 'Signin/Signup')" >Signin/Signup</button>
         <button class="tablinks" onclick="openTab(event, 'Camera')">Camera</button>
     </div>
-    
+
     <div id="Signin/Signup" class="tabcontent">
         <div class="demo-layout mdl-layout mdl-js-layout mdl-layout--fixed-header">
         <!-- Header section containing title -->
@@ -92,17 +92,17 @@
                 </div>
             </main>
         </div>
-        
-    </div>    
-    
-    
+
+    </div>
+
+
     <div id="Camera" class="tabcontent">
-        <h3>Take a picture that matches the overlay!</h3> 
+        <h3>Take a picture that matches the overlay!</h3>
         <div id="container">
-            <video autoplay="true" id="videoElement"></video>
+            <video autoplay="true" id="vid"></video>
             <img id="overlay" src=""/>
         </div>
     </div>
-    
+
 </body>
-</html> 
+</html>
