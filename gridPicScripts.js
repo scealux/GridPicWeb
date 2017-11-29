@@ -3,12 +3,12 @@
 
 navigator.mediaDevices.getUserMedia({video:true}).then(function(stream){
     vid.onloadedmetadata = function(){
-        this.width = overlay.width = this.videoWidth;
-        this.height = overlay.height = this.videoHeight;
+        this.width = vid.width = this.videoWidth;
+        this.height = vid.height = this.videoHeight;
     }
     vid.srcObject = stream;
     vid.play();
-    overlay.onclick = function(){
+    vid.onclick = function(){
         var c = document.createElement('canvas');
         c.width = vid.videoWidth;
         c.height = vid.videoHeight;
