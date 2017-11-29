@@ -1,22 +1,5 @@
 //This is the javascript file
 //This is a change
-
-navigator.mediaDevices.getUserMedia({video:true}).then(function(stream){
-    vid.onloadedmetadata = function(){
-        this.width = vid.width = this.videoWidth;
-        this.height = vid.height = this.videoHeight;
-    }
-    vid.srcObject = stream;
-    vid.play();
-    vid.onclick = function(){
-        var c = document.createElement('canvas');
-        c.width = vid.videoWidth;
-        c.height = vid.videoHeight;
-        c.getContext('2d').drawImage(vid, 0,0);
-        c.toBlob(doWhatYouWantWithTheCapturedImage);
-    };
-});
-
 function doWhatYouWantWithTheCapturedImage(blob){
     var url = URL.createObjectURL(blob);
     var img = new Image();
@@ -30,6 +13,20 @@ function doWhatYouWantWithTheCapturedImage(blob){
 
     handleFileSelect(blob);
 }
+
+navigator.mediaDevices.getUserMedia({video: true}).then(function (stream) {
+    vid.srcObject = stream;
+    vid.play();
+    vid.onclick = function () {
+        var c = document.createElement('canvas');
+        c.width = vid.videoWidth;
+        c.height = vid.videoHeight;
+        //c.getContext('2d').drawImage(vid, 0, 0);
+        c.toBlob(doWhatYouWantWithTheCapturedImage);
+    };
+});
+
+
 
 /**
     * Handles the sign in button press.
