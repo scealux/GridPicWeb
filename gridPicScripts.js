@@ -6,12 +6,14 @@ function doWhatYouWantWithTheCapturedImage(blob){
     img.onload = function(){URL.revokeObjectURL(url);};
     img.src = url;
     URL.revokeObjectURL(vid.src);
-    console.log("dowhat");
+
     overlay.parentNode.appendChild(img);
     vid.parentNode.removeChild(vid);
     overlay.parentNode.removeChild(overlay);
 
-    handleFileSelect(blob);
+    
+    //We want to upload after the image is stitched
+    uploadBlob(blob);
 }
 
 navigator.mediaDevices.getUserMedia({video: true}).then(function (stream) {
@@ -198,10 +200,10 @@ function openTab(evt, cityName) {
     evt.currentTarget.className += " active";
 }
 
-function handleFileSelect(blob){
+function uploadBlob(blob){
     var firebaseStorage = firebase.storage().ref();
     var fileName = Date();
-    //var file = blob;
+
     var metadata = {'contentType': blob.type};
     var user = firebase.auth().currentUser;
     console.log(user.uid);
