@@ -11,7 +11,7 @@ function doWhatYouWantWithTheCapturedImage(blob){
     vid.parentNode.removeChild(vid);
     overlay.parentNode.removeChild(overlay);
 
-    
+
     //We want to upload after the image is stitched
     uploadBlob(blob);
 }
@@ -158,7 +158,7 @@ function initApp() {
                 document.getElementById('quickstart-verify-email').disabled = false;
             }
             // [END_EXCLUDE]
-        } else {
+            } else {
             // User is signed out.
             // [START_EXCLUDE]
             document.getElementById('quickstart-sign-in-status').textContent = 'Signed out';
