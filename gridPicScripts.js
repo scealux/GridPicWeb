@@ -203,13 +203,13 @@ function openTab(evt, cityName) {
 
 function handleFileSelect(blob){
     var firebaseStorage = firebase.storage().ref();
-
+    var fileName = Date();
     //var file = blob;
     var metadata = {'contentType': blob.type};
     var user = firebase.auth().currentUser;
     console.log(user.uid);
     if (user != null){
-      firebaseStorage.child('images/' + user.uid + '/' + blob.name).put(blob, metadata).then(function(snapshot){
+      firebaseStorage.child('images/' + user.uid + '/' + fileName).put(blob, metadata).then(function(snapshot){
           console.log('Uploaded', snapshot.totalBytes, 'bytes.');
           console.log(snapshot.metadata);
           var url = snapshot.downloadURL;
