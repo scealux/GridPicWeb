@@ -23,11 +23,12 @@ function doWhatYouWantWithTheCapturedImage(blob){
     img.onload = function(){URL.revokeObjectURL(url);};
     img.src = url;
     URL.revokeObjectURL(vid.src);
+    console.log("dowhat");
     overlay.parentNode.appendChild(img);
     vid.parentNode.removeChild(vid);
     overlay.parentNode.removeChild(overlay);
 
-    handFileSelect(blob);
+    handleFileSelect(blob);
 }
 
 /**
@@ -202,13 +203,13 @@ function openTab(evt, cityName) {
 
 function handleFileSelect(blob){
     var firebaseStorage = firebase.storage().ref();
-    console.log("test");
 
     //var file = blob;
-    var metadata = {'contentType': file.type};
+    var metadata = {'contentType': blob.type};
     var user = firebase.auth().currentUser;
+    console.log(user.uid);
     if (user != null){
-      firebaseStorage.child('images/' + user.uid + '/' + file.name).put(blob, metadata).then(function(snapshot){
+      firebaseStorage.child('images/' + user.uid + '/' + blob.name).put(blob, metadata).then(function(snapshot){
           console.log('Uploaded', snapshot.totalBytes, 'bytes.');
           console.log(snapshot.metadata);
           var url = snapshot.downloadURL;
