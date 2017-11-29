@@ -6,7 +6,7 @@ navigator.mediaDevices.getUserMedia({video:true}).then(function(stream){
         this.width = overlay.width = this.videoWidth;
         this.height = overlay.height = this.videoHeight;
     }
-    vid.src = URL.createObjectURL(stream);
+    vid.srcObject = stream;
     vid.play();
     overlay.onclick = function(){
         var c = document.createElement('canvas');
@@ -176,7 +176,7 @@ function initApp() {
     // [END authstatelistener]
     document.getElementById('quickstart-sign-in').addEventListener('click', toggleSignIn, false);
     document.getElementById('quickstart-sign-up').addEventListener('click', handleSignUp, false);
-    document.getElementById('quickstart-verify-email').addEventListener('click', sendEmailVerification, false);
+    //FIX THIS document.getElementById('quickstart-verify-email').addEventListener('click', sendEmailVerification, false);
     document.getElementById('quickstart-password-reset').addEventListener('click', sendPasswordReset, false);
 }
 

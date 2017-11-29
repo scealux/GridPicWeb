@@ -20,19 +20,27 @@
 <!-- Import and configure the Firebase SDK -->
 <!-- These scripts are made available when the app is served or deployed on Firebase Hosting -->
 <!-- If you do not serve/host your project using Firebase Hosting see https://firebase.google.com/docs/web/setup -->
-<script src="/__/firebase/4.0.0/firebase-app.js"></script>
+
+<script src="https://www.gstatic.com/firebasejs/4.6.2/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/4.6.2/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/4.6.2/firebase-database.js"></script>
+<script src="https://www.gstatic.com/firebasejs/4.6.2/firebase-storage.js"></script>
+<script src="https://www.gstatic.com/firebasejs/4.6.2/firebase-firestore.js"></script>
+<script src="https://www.gstatic.com/firebasejs/4.6.2/firebase-messaging.js"></script>
+
+<!-- USE THIS IF FIREBASE IS HOSTING WEBSITE -->
+<!--<script src="/__/firebase/4.0.0/firebase-app.js"></script>
 <script src="/__/firebase/4.0.0/firebase-auth.js"></script>
 <script src="https://www.gstatic.com/firebasejs/4.6.2/firebase.js"></script>
-<script src="/__/firebase/4.0.0/firebase-app.js"></script>
-<script src="/__/firebase/4.0.0/firebase-auth.js"></script>
-<script src="/__/firebase/init.js"></script>
+<script src="/__/firebase/init.js"></script> -->
+
 <script>
     // Initialize Firebase
     // TODO: Replace with your project's customized code snippet
     var config = {
         apiKey: "AIzaSyDkKILOPWM9Hy8Zu_LUS_6QsDcUpJyGkOw",
         authDomain: "gridpic-19d92.firebaseapp.com",
-        databaseURL: "https://gridpic-  19d92.firebaseio.com",
+        databaseURL: "https://gridpic-19d92.firebaseio.com",
         projectId: "gridpic-19d92",
         storageBucket: "gridpic-19d92.appspot.com",
         messagingSenderId: "489216708867"
@@ -40,9 +48,9 @@
     firebase.initializeApp(config);
 
     var database = firebase.database();
-    var storage = firebase.storage();
+    var storage = firebase.storage;
 </script>
-<script src="/__/firebase/init.js"></script>
+<!--<script src="/__/firebase/init.js"></script>-->
 
 <header>
     <h2>GridPic</h2>
