@@ -92,16 +92,37 @@
                 </div>
             </main>
         </div>
-
     </div>
 
 
     <div id="Camera" class="tabcontent">
         <h3>Take a picture that matches the overlay!</h3>
-        <div id="container">
-            <video autoplay="true" id="vid"></video>
-            <img id="overlay" src=""/>
-        </div>
+        <table>
+          <tr>
+            <td>
+              <div id="container1" class="container" onclick="createVideoStream()">
+                  <img id="overlay" src=""/>
+              </div>
+            </td>
+            <td>
+              <div id="container2" class="container" onclick="createVideoStream()">
+                  <img id="overlay" src=""/>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <div id="container3" class="container" onclick="createVideoStream()">
+                  <img id="overlay" src=""/>
+              </div>
+            </td>
+            <td>
+              <div id="container4" class="container" onclick="createVideoStream()">
+                  <img id="overlay" src=""/>
+              </div>
+            </td>
+          </tr>
+        </table>
     </div>
 
 </body>

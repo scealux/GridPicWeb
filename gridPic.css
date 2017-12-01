@@ -33,6 +33,10 @@ img {
     max-height: 100%;
 }
 
+table{
+  border-collapse: collapse;
+}
+
 .tabcontent {
     display: none;
     padding: 6px 12px;
@@ -40,12 +44,13 @@ img {
     border-top: none;
 }
 
-#container {
+.container {
     margin: 0px auto;
     width: 500px;
     height: 375px;
     border: 10px #333 solid;
 }
+
 #vid {
     width: 500px;
     height: 375px;

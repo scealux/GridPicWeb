@@ -1,5 +1,28 @@
 //This is the javascript file
 //This is a change
+function createVideoStream(){
+  var container = document.getElementById("container");
+  var test = document.createElement('video');
+  test.setAttribute("autoplay", "true");
+  test.id = "vid";
+
+  container.appendChild(test);
+
+  navigator.mediaDevices.getUserMedia({video: true}).then(function (stream) {
+      vid.srcObject = stream;
+      vid.play();
+      vid.onclick = function () {
+          var c = document.createElement('canvas');
+          c.width = vid.videoWidth;
+          c.height = vid.videoHeight;
+          c.getContext('2d').drawImage(vid, 0, 0);
+          c.toBlob(doWhatYouWantWithTheCapturedImage);
+      };
+  });
+
+  console.log('test');
+}
+
 function doWhatYouWantWithTheCapturedImage(blob){
     var url = URL.createObjectURL(blob);
     var img = new Image();
@@ -16,17 +39,10 @@ function doWhatYouWantWithTheCapturedImage(blob){
     uploadBlob(blob);
 }
 
-navigator.mediaDevices.getUserMedia({video: true}).then(function (stream) {
-    vid.srcObject = stream;
-    vid.play();
-    vid.onclick = function () {
-        var c = document.createElement('canvas');
-        c.width = vid.videoWidth;
-        c.height = vid.videoHeight;
-        //c.getContext('2d').drawImage(vid, 0, 0);
-        c.toBlob(doWhatYouWantWithTheCapturedImage);
-    };
-});
+function testfunction(test){
+  console.log(test.id);
+}
+
 
 
 
@@ -212,9 +228,15 @@ function uploadBlob(blob){
           console.log('Uploaded', snapshot.totalBytes, 'bytes.');
           console.log(snapshot.metadata);
           var url = snapshot.downloadURL;
-          console.log('File available at', url);
+          console.log('File available at', url);  //remove these logs
+
+          //realtime database for the download url
+          var firebaseDatabase = firebase.database().ref('users/' + user.uid).set({
+            email: user.email,
+            image_path: url
+          });
       }).catch(function(error){
-          console.error('Upload failed:', error);
+          console.error('Upload failed:', error); //remove these logs
       });
     }
 }
