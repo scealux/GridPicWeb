@@ -1,42 +1,58 @@
-//This is the javascript file
-//This is a change
-function createVideoStream(){
-  var container = document.getElementById("container");
-  var test = document.createElement('video');
-  test.setAttribute("autoplay", "true");
-  test.id = "vid";
+//GLOBALS
+var images = [null, null, null, null];
+var currentIndex = -1;
 
-  container.appendChild(test);
+function createVideoStream(containerIndex){
+  //need to add check for if the container contains an image that will be overriden
+  var container = document.getElementById("container" + containerIndex.toString()); //selecting the container that was clicked
 
-  navigator.mediaDevices.getUserMedia({video: true}).then(function (stream) {
-      vid.srcObject = stream;
-      vid.play();
-      vid.onclick = function () {
-          var c = document.createElement('canvas');
-          c.width = vid.videoWidth;
-          c.height = vid.videoHeight;
-          c.getContext('2d').drawImage(vid, 0, 0);
-          c.toBlob(doWhatYouWantWithTheCapturedImage);
-      };
-  });
+  var currentVideo = document.getElementById("vid"); //grabbing the current video on the page if there is one
+  var parentId = $("video").closest("div").prop("id"); //grabbing the parent div id that contains the 'vid' element
+  console.log(parentId + ", container" + containerIndex.toString());
+  if (currentVideo != null && parentId != "container" + containerIndex.toString()){ //we only want to delete the video when another container is clicked
+    document.getElementById("vid").remove();
+    currentVideo = null;
+  }
 
-  console.log('test');
+  if (currentVideo == null){ //only want to create a new 'vid' element when one does not already exist
+    currentIndex = containerIndex;
+    var createVideo = document.createElement('video');
+    createVideo.setAttribute("autoplay", "true");
+    createVideo.id = "vid";
+
+    container.appendChild(createVideo);
+
+    navigator.mediaDevices.getUserMedia({video: true}).then(function (stream) { //onclick to take picture and creating putting image on the screen
+        vid.srcObject = stream;
+        vid.play();
+        vid.onclick = function () {
+            var c = document.createElement('canvas');
+            c.width = vid.videoWidth;
+            c.height = vid.videoHeight;
+            c.getContext('2d').drawImage(vid, 0, 0);
+            c.toBlob(CreateImage);
+        };
+    });
+  }
 }
 
-function doWhatYouWantWithTheCapturedImage(blob){
+function CreateImage(blob){
     var url = URL.createObjectURL(blob);
     var img = new Image();
     img.onload = function(){URL.revokeObjectURL(url);};
     img.src = url;
+    img.id = "img" + currentIndex;
+
     URL.revokeObjectURL(vid.src);
 
     overlay.parentNode.appendChild(img);
     vid.parentNode.removeChild(vid);
     overlay.parentNode.removeChild(overlay);
 
+    //adding image to Images[]
 
     //We want to upload after the image is stitched
-    uploadBlob(blob);
+    //uploadBlob(blob, 1);
 }
 
 function testfunction(test){
