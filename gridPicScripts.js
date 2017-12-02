@@ -1,9 +1,12 @@
 //GLOBALS
 var images = [null, null, null, null];
-var currentIndex = -1;
+var currentIndex;
 
 function createVideoStream(containerIndex){
-  //need to add check for if the container contains an image that will be overriden
+  if (images[containerIndex-1] != null){ //a picture for that container already exists
+      return; //functionality to delete images will be in the gallery tab
+  }
+  
   var container = document.getElementById("container" + containerIndex.toString()); //selecting the container that was clicked
 
   var currentVideo = document.getElementById("vid"); //grabbing the current video on the page if there is one
@@ -49,10 +52,11 @@ function CreateImage(blob){
     vid.parentNode.removeChild(vid);
     overlay.parentNode.removeChild(overlay);
 
-    //adding image to Images[]
+    //adding image to images[]
+    images[currentIndex-1] = img;
 
     //We want to upload after the image is stitched
-    //uploadBlob(blob, 1);
+    uploadBlob(blob);
 }
 
 function testfunction(test){
@@ -247,10 +251,35 @@ function uploadBlob(blob){
           console.log('File available at', url);  //remove these logs
 
           //realtime database for the download url
-          var firebaseDatabase = firebase.database().ref('users/' + user.uid).set({
-            email: user.email,
-            image_path: url
-          });
+          var firebaseDatabase;
+
+          switch(currentIndex){ //setting realtime database information based on the container the picture was taken in
+            case 1:
+              firebaseDatabase = firebase.database().ref('users/' + user.uid).update({
+                email: user.email,
+                image_path1: url
+              });
+              break;
+            case 2:
+              firebaseDatabase = firebase.database().ref('users/' + user.uid).update({
+                email: user.email,
+                image_path2: url
+              });
+              break;
+            case 3:
+              firebaseDatabase = firebase.database().ref('users/' + user.uid).update({
+                email: user.email,
+                image_path3: url
+              });
+              break;
+            case 4:
+              firebaseDatabase = firebase.database().ref('users/' + user.uid).update({
+                email: user.email,
+                image_path4: url
+              });
+              break;
+          }
+
       }).catch(function(error){
           console.error('Upload failed:', error); //remove these logs
       });
