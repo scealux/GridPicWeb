@@ -36,6 +36,9 @@ function createVideoStream(containerIndex){
             c.getContext('2d').drawImage(vid, 0, 0);
             c.toBlob(CreateImage);
         };
+    }).catch(function(error){
+      vid.parentNode.removeChild(vid);
+      console.log(error);
     });
   }
 }
