@@ -52,7 +52,6 @@ function CreateImage(blob){
 
     vidParent.appendChild(img);
     vidParent.removeChild(vid);
-    vidParent.removeChild(overlay);
 
     //adding image to images[]
     images[currentIndex-1] = img;
