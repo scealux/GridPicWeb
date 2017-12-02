@@ -1,7 +1,7 @@
 //GLOBALS
 var images = [null, null, null, null];
 var currentIndex;
-var userLoggedIn;
+var userIdGlobal;
 
 function createVideoStream(containerIndex){
   if (images[containerIndex-1] != null){ //a picture for that container already exists
@@ -171,6 +171,9 @@ function sendPasswordReset() {
 *  - firebase.auth().onAuthStateChanged: This listener is called when the user is signed in or
 *    out, and that is where we update the UI.
 */
+
+
+
 function initApp() {
     // Listening for auth state changes.
     // [START authstatelistener]
@@ -191,6 +194,9 @@ function initApp() {
             document.getElementById('quickstart-sign-in-status').textContent = 'You are signed in as '+user.email;
             openTab(event, 'Camera');
             document.getElementById('cameraInstruct').textContent = 'Click a grid piece to start, then take a picture that matches the overlay!';
+            document.getElementById('galleryInstructions').textContent = "Last few pictures you've taken:";
+            userIdGlobal = user.uid;
+            updatePictures();
             document.getElementById('gridPicMain').style.display = 'block';
             document.getElementById('quickstart-sign-in').textContent = 'Sign out';
             document.getElementById('quickstart-sign-up').style.display= "none";
@@ -205,8 +211,11 @@ function initApp() {
             } else {
             // User is signed out.
             // [START_EXCLUDE]
+            userIdGlobal= '';
+            document.getElementById('picturesHere').innerHTML = '';
             document.getElementById('gridPicMain').style.display = 'none';
             document.getElementById('cameraInstruct').textContent = 'Sign in before making a GridPic!';
+            document.getElementById('galleryInstructions').textContent = 'Sign in to see your GridPics!';
             document.getElementById('quickstart-sign-in-status').textContent = 'Sign in to create a GridPic';
             document.getElementById('quickstart-sign-in').textContent = 'Sign in';
             document.getElementById('quickstart-sign-up').style.display= "inline";
@@ -297,8 +306,33 @@ function uploadBlob(blob){
       });
     }
 }
+function updatePictures(){
+    // Get a reference to the database service
+        var database = firebase.database();
 
+        // Create a storage reference from our database
+        var storageRef = database.ref();
+
+        var picturePlace = document.getElementById("picturesHere");
+
+        // Adds an event listener to any child added to our database
+        // This is triggered when the listener is first attached and every time a new child is added
+        // Adds the orders to the orders div
+        storageRef.on("child_added", function(snapshot){
+            //console.log(snapshot.val()[userIdGlobal]['image_path'+1]);
+            for (i=1;i<5;i++){
+                //console.log(snapshot.val()[userIdGlobal]['image_path'+i]);
+                if (snapshot.val()[userIdGlobal]['image_path'+i] != undefined){
+                    picturePlace.innerHTML += "<img src='"+snapshot.val()[userIdGlobal]['image_path'+i]+"'></img>";
+                };
+            };
+        });
+}
 window.onload = function() {
     initApp();
     openTab(event, 'Signin/Signup');
+    //console.log(userIdGlobal);
+    if (userIdGlobal != '' && userIdGlobal != undefined){
+        updatePictures();
+    };
 };
