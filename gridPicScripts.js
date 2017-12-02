@@ -6,7 +6,7 @@ function createVideoStream(containerIndex){
   if (images[containerIndex-1] != null){ //a picture for that container already exists
       return; //functionality to delete images will be in the gallery tab
   }
-  
+
   var container = document.getElementById("container" + containerIndex.toString()); //selecting the container that was clicked
 
   var currentVideo = document.getElementById("vid"); //grabbing the current video on the page if there is one
@@ -48,9 +48,9 @@ function CreateImage(blob){
 
     URL.revokeObjectURL(vid.src);
 
-    overlay.parentNode.appendChild(img);
+    vid.parentNode.appendChild(img);
     vid.parentNode.removeChild(vid);
-    overlay.parentNode.removeChild(overlay);
+    vid.parentNode.removeChild(overlay);
 
     //adding image to images[]
     images[currentIndex-1] = img;
