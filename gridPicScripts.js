@@ -48,9 +48,11 @@ function CreateImage(blob){
 
     URL.revokeObjectURL(vid.src);
 
-    vid.parentNode.appendChild(img);
-    vid.parentNode.removeChild(vid);
-    vid.parentNode.removeChild(overlay);
+    var vidParent = vid.parentNode;
+
+    vidParent.appendChild(img);
+    vidParent.removeChild(vid);
+    vidParent.removeChild(overlay);
 
     //adding image to images[]
     images[currentIndex-1] = img;
