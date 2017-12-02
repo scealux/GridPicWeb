@@ -50,9 +50,9 @@ function CreateImage(blob){
 
     URL.revokeObjectURL(vid.src);
 
-    vid.parentNode.appendChild(img);
-    vid.parentNode.removeChild(overlay);
-    vid.parentNode.removeChild(vid);
+    var parentContainer = vid.parentNode;
+    parentContainer.innerHTML = ''; //removes both the 'vid' and 'overlay'
+    parentContainer.appendChild(img); //this is the user taken image
 
 
     //adding image to images[]
