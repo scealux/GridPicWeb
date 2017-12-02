@@ -46,12 +46,14 @@ function CreateImage(blob){
     img.onload = function(){URL.revokeObjectURL(url);};
     img.src = url;
     img.id = "img" + currentIndex;
+    img.className = "userPicture";
 
     URL.revokeObjectURL(vid.src);
 
     vid.parentNode.appendChild(img);
-    vid.parentNode.removeChild(vid);
     vid.parentNode.removeChild(overlay);
+    vid.parentNode.removeChild(vid);
+
 
     //adding image to images[]
     images[currentIndex-1] = img;
@@ -205,7 +207,7 @@ function initApp() {
             document.getElementById('quickstart-sign-in-status').textContent = 'Sign in to create a GridPic';
             document.getElementById('quickstart-sign-in').textContent = 'Sign in';
             document.getElementById('quickstart-sign-up').style.display= "inline";
-                
+
             //document.getElementById('quickstart-account-details').textContent = 'null';
 
             //document.getElementById('file').disabled = false;

@@ -5,14 +5,14 @@
         <title>GridPic</title>
         <meta charset="utf-8"/>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
+
     <!-- CSS (JAVASCRIPT LINKS MOVED TO BOTTOM)-->
-        <link rel="stylesheet" type="text/css" href="/styling/gridPic.css">
+        <link rel="stylesheet" type="text/css" href="styling/gridPic.css">
         <!--Adding Google Font 'Roboto' and 'Fredoka One'-->
         <link href="https://fonts.googleapis.com/css?family=Roboto|Fredoka+One" rel="stylesheet">
         <!--Adding FontAwesome Icons-->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    
+
         <!-- Material Design Theming -->
             <!--
                 TODO: I don't think we need these since we're also not using Material design through the whole project. I'll leave it here commented out just in case.
@@ -22,25 +22,25 @@
                 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
                 <script defer src="https://code.getmdl.io/1.1.3/material.min.js"></script>
             -->
-        
 
-        
+
+
         <!-- Import and configure the Firebase SDK -->
-            <!-- 
+            <!--
                 TODO: I don't think we need these, since we're not using Firebase Hosting. I'll leave them on for now, because we may end up doing that.
-                
+
                 Original instructions:
                 "These scripts are made available when the app is served or deployed on Firebase Hosting
                 If you do not serve/host your project using Firebase Hosting see https://firebase.google.com/docs/web/setup"
             -->
-            <!--
+
                 <script src="https://www.gstatic.com/firebasejs/4.6.2/firebase-app.js"></script>
                 <script src="https://www.gstatic.com/firebasejs/4.6.2/firebase-auth.js"></script>
                 <script src="https://www.gstatic.com/firebasejs/4.6.2/firebase-database.js"></script>
                 <script src="https://www.gstatic.com/firebasejs/4.6.2/firebase-storage.js"></script>
                 <script src="https://www.gstatic.com/firebasejs/4.6.2/firebase-firestore.js"></script>
                 <script src="https://www.gstatic.com/firebasejs/4.6.2/firebase-messaging.js"></script>
-            -->
+
 </head>
 <body>
     <header style="margin-left: 10px;margin-top: -10px">
@@ -70,15 +70,15 @@
                             <p><i>Enter an email and password below to either sign in or create an account!</i></p>
 
                             <input class="mdl-textfield__input" style="display:inline;width:auto;" type="text" id="email" name="email" placeholder="Email"/>
-                            
+
                             <input class="mdl-textfield__input" style="display:inline;width:auto;" type="password" id="password" name="password" placeholder="Password"/>
                             <br/><br/>
                             <button disabled class="mdl-button mdl-js-button mdl-button--raised" id="quickstart-sign-in" name="signin">Sign In</button>
-                            
+
                             <button class="mdl-button mdl-js-button mdl-button--raised" id="quickstart-sign-up" name="signup">Sign Up</button>
-                            
+
                             <button class="mdl-button mdl-js-button mdl-button--raised" disabled id="quickstart-verify-email" name="verify-email">Send Email Verification</button>
-                            
+
                             <button class="mdl-button mdl-js-button mdl-button--raised" id="quickstart-password-reset" name="verify-email">Send Password Reset Email</button>
                         </div>
                     </div>
@@ -131,7 +131,7 @@
     </div>
     <!-- Typically, script tags are the last thing to be referenced in an html document. That way, the page loads as fast as it can, and the rest of the scripts load after there is content to manipulate-->
         <script src="http://code.jquery.com/jquery-2.2.1.js"></script>
-        <script src="/scripts/gridPicScripts.js"></script>
+        <script src="scripts/gridPicScripts.js"></script>
         <script src="https://www.gstatic.com/firebasejs/4.7.0/firebase.js"></script>
         <script>
             // Initialize Firebase
