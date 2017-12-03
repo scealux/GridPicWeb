@@ -4,8 +4,8 @@ body {
 }
 
 #overlay{
-    height: 300px;
-    width: 300px;
+    height: 350px;
+    width: 350px;
     /*object-fit: contain;*/
     position: absolute;
     pointer-events: none;
@@ -19,6 +19,7 @@ div.tab {
 .tablinks {
     color: #99477a;
 }
+
 input {
     border: 5px solid #ddd;
     padding: 5px;
@@ -76,10 +77,6 @@ td {
     overflow: hidden;
 }
 
-.userPicture{
-    min-width: 100%;
-    min-height: 100%;
-}
 
 .tabcontent {
     display: none;
@@ -90,8 +87,8 @@ td {
 
 .container {
     margin: 0px;
-    width: 300px;
-    height: 300px;
+    width: 350px;
+    height: 350px;
     /*border: 5px #333 solid;
      box-sizing: border-box;
     -moz-box-sizing: border-box;
@@ -99,8 +96,10 @@ td {
 }
 
 #vid {
-    width: 500px;
-    height: 375px;
+    min-width: 100%;
+    min-height: 100%;
+    /*width: 500px;
+    height: 375px;*/
     background-color: #666;
 }
 p {

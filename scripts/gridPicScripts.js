@@ -22,17 +22,21 @@ function createVideoStream(containerIndex){
     currentIndex = containerIndex;
     var createVideo = document.createElement('video');
     createVideo.setAttribute("autoplay", "true");
+    //createVideo.videoWidth = "300";
+    //createVideo.videoHeight = "300";
     createVideo.id = "vid";
 
-    container.appendChild(createVideo);
+    container.appendChild(createVideo); //appending the video stream
 
     navigator.mediaDevices.getUserMedia({video: true}).then(function (stream) { //onclick to take picture and creating putting image on the screen
+        //stream.applyConstraints(constraints);
         vid.srcObject = stream;
         vid.play();
+
         vid.onclick = function () {
             var c = document.createElement('canvas');
-            c.width = vid.videoWidth;
-            c.height = vid.videoHeight;
+            c.width = "350";
+            c.height = "350";
             c.getContext('2d').drawImage(vid, 0, 0);
             c.toBlob(CreateImage);
         };
