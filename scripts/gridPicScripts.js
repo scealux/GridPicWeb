@@ -7,8 +7,8 @@ var finalimage;
 var img1,img2,img3,img4;
 var finalcanvas = document.getElementById('finalcanvas');
 var finalctx = finalcanvas.getContext("2d");
-var canvas = document.getElementById('canvas');
-var ctx = canvas.getContext("2d");
+//var canvas = document.getElementById('canvas');
+//var ctx = canvas.getContext("2d");
 
 var imagedone = 0;
 var wantoverlay=0;
@@ -34,14 +34,11 @@ function finalizeimage(){
     imagedone =1;
     
     
-    finalctx.drawImage(img1,0,0,350,350);
-    finalctx.drawImage(img2,350,0,350,350);
-    finalctx.drawImage(img3,0,350,350,350);
-    finalctx.drawImage(img4,350,350,350,350);
 //    finalctx.drawImage(img1,0,0,350,350);
 //    finalctx.drawImage(img2,350,0,350,350);
 //    finalctx.drawImage(img3,0,350,350,350);
 //    finalctx.drawImage(img4,350,350,350,350);
+
     
 }
 //function drawoverlay(){
@@ -80,15 +77,15 @@ function download(){
         return;
     }
     
-    ctx.width = "700";
-    ctx.height = "700";
+//    ctx.width = "700";
+//    ctx.height = "700";
     
-    ctx.drawImage(images[0],0,0,350,350);
-    ctx.drawImage(images[1],350,0,350,350);
-    ctx.drawImage(images[2],0,350,350,350);
-    ctx.drawImage(images[3],350,350,350,350);
+//    ctx.drawImage(images[0],0,0,350,350);
+//    ctx.drawImage(images[1],350,0,350,350);
+//    ctx.drawImage(images[2],0,350,350,350);
+//    ctx.drawImage(images[3],350,350,350,350);
     var download = document.getElementById("download");
-    var GridPicImage = document.getElementById("canvas").toDataURL("GridPicImage/png")
+    var GridPicImage = document.getElementById("finalcanvas").toDataURL("GridPicImage/png")
     .replace("GridPicImage/png", "image/octet-stream");
     download.setAttribute("href", GridPicImage);
     
