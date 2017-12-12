@@ -1,13 +1,109 @@
 //GLOBALS
+
 var images = [null, null, null, null];
 var currentIndex;
 var userIdGlobal;
+var finalimage;
+var img1,img2,img3,img4;
+var finalcanvas = document.getElementById('finalcanvas');
+var finalctx = finalcanvas.getContext("2d");
+var canvas = document.getElementById('canvas');
+var ctx = canvas.getContext("2d");
+
+var imagedone = 0;
+var wantoverlay=0;
+img1 = new Image();
+img2 = new Image();
+img3 = new Image();
+img4 = new Image();
+
+img1.src = "assets/overlayTest-01.png";
+img2.src = "assets/overlayTest-02.png";
+img3.src = "assets/overlayTest-03.png";
+img4.src = "assets/overlayTest-04.png";
+function finalizeimage(){
+    
+    finalctx.width = "700";
+    finalctx.height = "700";
+    
+    finalctx.drawImage(images[0],0,0,350,350);
+    finalctx.drawImage(images[1],350,0,350,350);
+    finalctx.drawImage(images[2],0,350,350,350);
+    finalctx.drawImage(images[3],350,350,350,350);
+    
+    imagedone =1;
+    
+    
+    finalctx.drawImage(img1,0,0,350,350);
+    finalctx.drawImage(img2,350,0,350,350);
+    finalctx.drawImage(img3,0,350,350,350);
+    finalctx.drawImage(img4,350,350,350,350);
+//    finalctx.drawImage(img1,0,0,350,350);
+//    finalctx.drawImage(img2,350,0,350,350);
+//    finalctx.drawImage(img3,0,350,350,350);
+//    finalctx.drawImage(img4,350,350,350,350);
+    
+}
+//function drawoverlay(){
+//    img1 = new Image();
+//    img2 = new Image();
+//    img3 = new Image();
+//    img4 = new Image();
+//    img1.crossOrigin="anonymous";
+//    img2.crossOrigin="anonymous";
+//    img3.crossOrigin="anonymous";
+//    img4.crossOrigin="anonymous";
+//    img1.src = "assets/overlayTest-01.png";
+//    img2.src = "assets/overlayTest-02.png";
+//    img3.src = "assets/overlayTest-03.png";
+//    img4.src = "assets/overlayTest-04.png";
+//    
+//    finalctx.drawImage(img1,0,0,350,350);
+//    finalctx.drawImage(img2,350,0,350,350);
+//    finalctx.drawImage(img3,0,350,350,350);
+//    finalctx.drawImage(img4,350,350,350,350);
+//    
+//}
+var checkbox = document.getElementById("chbx");
+
+function checkbox_changed() {
+    if (checkbox.checked == true) {
+        wantoverlay=1;
+        
+    } else {
+        wantoverlay=0;
+    }
+}
+function download(){
+    if (imagedone == 0){
+        alert("Must Finalize Image Before Download");// cannot download image before
+        return;
+    }
+    
+    ctx.width = "700";
+    ctx.height = "700";
+    
+    ctx.drawImage(images[0],0,0,350,350);
+    ctx.drawImage(images[1],350,0,350,350);
+    ctx.drawImage(images[2],0,350,350,350);
+    ctx.drawImage(images[3],350,350,350,350);
+    var download = document.getElementById("download");
+    var GridPicImage = document.getElementById("canvas").toDataURL("GridPicImage/png")
+    .replace("GridPicImage/png", "image/octet-stream");
+    download.setAttribute("href", GridPicImage);
+    
+}
+
+function createVideoStream(containerIndex){
+    if (images[containerIndex-1] != null){ //a picture for that container already exists
+        return; //functionality to delete images will be in the gallery tab
+    }
+}
 
 function createVideoStream(containerIndex){
   if (images[containerIndex-1] != null){ //a picture for that container already exists
       return; //functionality to delete images will be in the gallery tab
   }
-
   var container = document.getElementById("container" + containerIndex.toString()); //selecting the container that was clicked
 
   var currentVideo = document.getElementById("vid"); //grabbing the current video on the page if there is one
@@ -39,6 +135,8 @@ function createVideoStream(containerIndex){
             c.height = "350";
             c.getContext('2d').drawImage(vid, 0, 0);
             c.toBlob(CreateImage);
+                
+                                                            
         };
     }).catch(function(error){
       vid.parentNode.removeChild(vid);

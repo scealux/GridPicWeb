@@ -124,11 +124,33 @@
             </td>
           </tr>
         </table>
+        <div>
+            
+            
+            <br/>
+            <button onclick="finalizeimage()" style ="width:705px;">Finalize Image</button>
+            <canvas id="canvas" height="700" width="700"/></canvas>
+            
+        </div>
+        <br/>
+        
+        <br/>
+<!--        <canvas id="finalcanvas" height="700" width="700"/></canvas>-->
     </div>
 
     <div id="Gallery" class="tabcontent">
-        <h3 id="galleryInstructions">Last few pictures you've taken:</h3>
+        <h3 id="galleryInstructions"></h3>
+        <canvas id="finalcanvas" height="700" width="700"/></canvas>
+        <br/>
+        <br/>
+        <a id="download" download="image.png"><button onClick="download() "style ="width:700px">Download</button></a>
+        <br/>
+        <br/>
+        
+        <br/>
         <div id="picturesHere">
+        
+        
             
         </div>
     </div>
